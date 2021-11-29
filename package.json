@@ -1,0 +1,19 @@
+{
+  "name": "docker-app",
+  "version": "1.0.0",
+  "description": "OS Mini Project 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lorrainemakuyana/docker-app.git"
+  },
+  "author": "Lorraine Makuyana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lorrainemakuyana/docker-app/issues"
+  },
+  "homepage": "https://github.com/lorrainemakuyana/docker-app#readme"
+}
