@@ -1,5 +1,6 @@
 //input passed in here 
 
+
 const permissions = (number) => {
     let binaryEq = parseInt(number, 2)
     switch (binaryEq) {        
