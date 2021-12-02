@@ -1,24 +1,68 @@
-//import express from 'express'
+const express = require('express')
 
-console.clear();
+const app = express()
+const port = 3000
 
-const express = require('express'); 
+app.get('/', (req, res) => {
+    console.log("get /")
+    res.send('OS Mini Project 4 - Lorraine Makuyana & Hephzibah Emereole')
+})
 
-const getPermissions = require('getPermissions'); 
-const getParityBits = require('getParityBits');
+/***************************** GET PERMISSIONS ****************************************/
+app.post(`/permissions?code=${code}`, getPermissions); 
 
-const app = express();
+app.post('/permissions/:code', (req, res) => {
+        console.log("Getting permissions...")
+        let n = req.params.code
+        let permissions = {}; 
+        let str = n.toString();
+        permissions.owner = getUserPermissions(str[0])
+        permissions.group = getUserPermissions(str[1])
+        permissions.other = getUserPermissions(str[2])
+        
+        res.send(permissions);
+    }
+)
 
-app.use(express.json());
+const getUserPermissions = (number) => {
+    switch (number) {        
+        case "1": 
+            return ['execute']
 
-app.post('/getPermissions/:code', getPermissions); 
+        case "2": 
+            return ['write']
+        
+        case "3": 
+            return ['write', 'execute']
+        
+        case "4": 
+            return ['read']
+        
+        case "5": 
+            return ['read', 'execute']
+        
+        case "6": 
+            return ['read', 'write']
 
-app.post('getParityBits', getParityBits); 
+        case "7": 
+            return ['read', 'write', 'execute']
+        
+        default:
+            return []
+    }
+}
+/***************************** END OF GET PERMISSIONS ****************************************/
 
-const port = 8080; 
+
+/***************************** GET PARITY BITS ***********************************************/
+
+
+
+
+/***************************** END OF GET PARITY BITS ***********************************************/
+
+
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-}); 
-
-console.clear();
+  console.log(`Example app listening at http://localhost:${port}`)
+})
