@@ -1,16 +1,10 @@
 'use strict';
-//const parity = require('parity');
 const express = require('express');
-
-
 const myFunction = require('./getPermissions.js')
-//const myFunction2 = require('./parity.js')
 
-// Constants
 const PORT = 8080;
 const HOST = 'localhost';
 
-// App
 const app = express();
 app.get('/', (req, res) => {
   res.send('Hello World');
@@ -32,7 +26,6 @@ app.get('/parity/:b1/:b2/:b3/:b4', (req,res) => {
     }
     res.send(parityVal);
 })
-
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

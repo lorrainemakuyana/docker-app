@@ -1,25 +1,19 @@
 const express = require('express')
 
 const app = express()
-const port = 3000
+const port = 8080
 
 app.get('/', (req, res) => {
-    console.log("get /")
     res.send('OS Mini Project 4 - Lorraine Makuyana & Hephzibah Emereole')
 })
 
-/***************************** GET PERMISSIONS ****************************************/
-app.post(`/permissions?code=${code}`, getPermissions); 
-
 app.post('/permissions/:code', (req, res) => {
-        console.log("Getting permissions...")
         let n = req.params.code
         let permissions = {}; 
         let str = n.toString();
         permissions.owner = getUserPermissions(str[0])
         permissions.group = getUserPermissions(str[1])
         permissions.other = getUserPermissions(str[2])
-        
         res.send(permissions);
     }
 )
@@ -51,18 +45,18 @@ const getUserPermissions = (number) => {
             return []
     }
 }
-/***************************** END OF GET PERMISSIONS ****************************************/
 
-
-/***************************** GET PARITY BITS ***********************************************/
-
-
-
-
-/***************************** END OF GET PARITY BITS ***********************************************/
-
-
+app.post('/parity/:b1/:b2/:b3/:b4', (req,res) => {
+    let parityVal = ""
+    let response = {}
+    for (let i = 0; i < 2; i++){
+        let bitval = parseInt(req.params.b1[i]) ^ parseInt(req.params.b2[i]) ^ parseInt(req.params.b3[i]) ^ parseInt(req.params.b4[i])
+        parityVal += bitval.toString()
+    }
+    response.parity = parityVal
+    res.send(response)
+})
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Application running on http://localhost:${port}`)
 })
