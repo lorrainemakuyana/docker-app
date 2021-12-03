@@ -4,7 +4,7 @@ const app = express()
 const port = 8080
 
 app.get('/', (req, res) => {
-    res.send('OS Mini Project 4 - Lorraine Makuyana & Hephzibah Emereole')
+    res.send('OS Mini Project 4 - Lorraine Makuyana & Hephzibah Emereole\n\n')
 })
 
 app.post('/permissions/:code', (req, res) => {
